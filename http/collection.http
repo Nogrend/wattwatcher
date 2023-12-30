@@ -1,0 +1,29 @@
+### save one measurement
+POST http://localhost:8080/rooms
+Content-Type: application/json
+{
+  "id": "dc145f99-82a1-4503-94dd-7d3509bb2a01",
+  "timestamp": "2023-12-30T22:22:22Z",
+  "voltage": 234.8000030517578,
+  "current": 0.4350000023841858,
+  "powerActive": 67.5,
+  "powerApparent": 67.85446166992188,
+  "powerReactive": -9.0,
+  "powerFactor": 0.9907402992248535,
+  "phaseAngle": 0.0,
+  "frequency": 50.040000915527344,
+  "importEnergyActive": 0.5640000104904175,
+  "exportEnergyActive": 0.0,
+  "importEnergyReactive": 0.027000000700354576,
+  "exportEnergyReactive": 0.10199999809265137,
+  "totalDemandPowerActive": 57.26185607910156,
+  "maximumTotalDemandPowerActive": 94.43181610107422,
+  "importDemandPowerActive": 57.26185607910156,
+  "maximumImportDemandPowerActive": 94.43181610107422,
+  "exportDemandPowerActive": 0.0,
+  "maximumExportDemandPowerActive": 0.10299995541572571,
+  "totalDemandCurrent": 0.37352603673934937,
+  "maximumTotalDemandCurrent": 0.5216668844223022,
+  "totalEnergyActive": 0.5640000104904175,
+  "totalEnergyReactive": 0.1289999932050705
+}

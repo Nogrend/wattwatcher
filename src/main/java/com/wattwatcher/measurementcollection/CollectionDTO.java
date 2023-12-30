@@ -36,5 +36,4 @@ public class CollectionDTO {
     private double maximumTotalDemandCurrent;
     private double totalEnergyActive;
     private double totalEnergyReactive;
-
 }
