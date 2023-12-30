@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wattwatcher</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>wattwatcher</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Watt Watcher</name>
 	<description>WattWatcher serves as a centralized repository for storing gathered data related to energy consumption.</description>
@@ -26,6 +26,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>3.2.0-M1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
