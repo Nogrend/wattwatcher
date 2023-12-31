@@ -1,19 +1,15 @@
-package com.wattwatcher.measurementcollection;
+package com.wattwatcher.measurement;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
 import java.time.Instant;
 import java.util.UUID;
 
-@Entity(name = "Collection")
-@Table(name = "Collections")
-@Data
-@NoArgsConstructor
-public class Collection {
+@Builder
+@Getter
+public class MeasurementDTO {
     @Id
     private UUID id;
     private Instant timestamp;
@@ -40,4 +36,3 @@ public class Collection {
     private double totalEnergyActive;
     private double totalEnergyReactive;
 }
-

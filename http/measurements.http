@@ -1,0 +1,34 @@
+### save one measurement
+POST http://localhost:8080/measurements
+Content-Type: application/json
+
+{
+  "id": "dc145f99-82a1-4503-94dd-7d3509bb2a03",
+  "timestamp": "2023-12-25T12:00:00Z",
+  "voltage": 234.8,
+  "current": 0.435,
+  "powerActive": 67.5,
+  "powerApparent": 67.854,
+  "powerReactive": -9.0,
+  "powerFactor": 0.990,
+  "phaseAngle": 0.0,
+  "frequency": 50.04,
+  "importEnergyActive": 0.564,
+  "exportEnergyActive": 0.0,
+  "importEnergyReactive": 0.027,
+  "exportEnergyReactive": 0.101,
+  "totalDemandPowerActive": 57.261,
+  "maximumTotalDemandPowerActive": 94.431,
+  "importDemandPowerActive": 57.261,
+  "maximumImportDemandPowerActive": 94.431,
+  "exportDemandPowerActive": 0.0,
+  "maximumExportDemandPowerActive": 0.102,
+  "totalDemandCurrent": 0.373,
+  "maximumTotalDemandCurrent": 0.521,
+  "totalEnergyActive": 0.564,
+  "totalEnergyReactive": 0.128
+}
+
+### get all measurements
+GET http://localhost:8080/measurements
+Content-Type: application/json
