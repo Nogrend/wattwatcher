@@ -1,0 +1,12 @@
+version: '3'
+services:
+  wattwatcher-db:
+    image: postgres:11.5-alpine
+    environment:
+      POSTGRES_USER: bram
+      POSTGRES_PASSWORD: bram
+      POSTGRES_DB: wattwatcher
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
