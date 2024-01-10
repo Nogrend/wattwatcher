@@ -1,5 +1,7 @@
 package com.wattwatcher.measurement;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wattwatcher.measurement.controller.SaveMeasurementCommand;
 import org.eclipse.paho.client.mqttv3.IMqttClient;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.integration.annotation.Transformer;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.core.MessageProducer;
 import org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory;
@@ -20,6 +23,11 @@ import java.util.concurrent.SubmissionPublisher;
 
 @Configuration
 public class MqttConfiguration {
+    private ObjectMapper objectMapper;
+
+    public MqttConfiguration(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
 
     @Bean
     @ConfigurationProperties(prefix = "mqtt")
@@ -32,6 +40,10 @@ public class MqttConfiguration {
         return new DirectChannel();
     }
 
+    @Bean
+    public MessageChannel processedInputChannel() {
+        return new DirectChannel();
+    }
 
     @Bean
     public MqttPahoClientFactory mqttClientFactory() {
@@ -44,11 +56,21 @@ public class MqttConfiguration {
         return factory;
     }
 
+    @Transformer(inputChannel = "mqttInputChannel", outputChannel = "processedInputChannel")
+    public SaveMeasurementCommand transform(String payload) {
+        try {
+            return objectMapper.readValue(payload, SaveMeasurementCommand.class);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Bean
     public MessageProducer incoming() {
         var adapter = new MqttPahoMessageDrivenChannelAdapter(
                 "wattwatcher",
-                mqttClientFactory(), "sdmMeasurement/all"
+                mqttClientFactory(),
+                "sdmMeasurement/all"
         );
         adapter.setCompletionTimeout(5000);
         adapter.setConverter(new DefaultPahoMessageConverter());

@@ -8,7 +8,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/measurements")
 public class MeasurementController {
-
     private final MeasurementService measurementService;
 
     public MeasurementController(MeasurementService measurementService) {
@@ -20,5 +19,4 @@ public class MeasurementController {
     public List<MeasurementQuery> getMeasurements() {
         return measurementService.findAll();
     }
-
 }

@@ -11,27 +11,14 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class MeasurementMessageHandler {
-
-    private final ObjectMapper objectMapper;
     private final MeasurementService measurementService;
 
-    public MeasurementMessageHandler(ObjectMapper objectMapper, MeasurementService measurementService) {
-        this.objectMapper = objectMapper;
+    public MeasurementMessageHandler(MeasurementService measurementService) {
         this.measurementService = measurementService;
     }
 
-
-    @Bean
-    @ServiceActivator(inputChannel = "mqttInputChannel")
-    public MessageHandler handler() {
-        return message -> {
-            var payload = message.getPayload();
-            try {
-                var saveMeasurementCommand = objectMapper.readValue((String) payload, SaveMeasurementCommand.class);
-                measurementService.saveMeasurement(saveMeasurementCommand);
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-        };
+    @ServiceActivator(inputChannel = "processedInputChannel")
+    public void handleMeasurement(SaveMeasurementCommand saveMeasurementCommand) {
+        measurementService.saveMeasurement(saveMeasurementCommand);
     }
 }
