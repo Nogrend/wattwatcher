@@ -43,3 +43,4 @@ public class Measurement {
     private double totalEnergyReactive;
 }
 
+///jdbc client

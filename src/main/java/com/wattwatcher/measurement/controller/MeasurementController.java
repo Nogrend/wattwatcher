@@ -1,6 +1,6 @@
-package com.wattwatcher.measurement;
+package com.wattwatcher.measurement.controller;
 
-import jakarta.validation.Valid;
+import com.wattwatcher.measurement.MeasurementService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,18 +10,13 @@ import java.util.List;
 public class MeasurementController {
     private final MeasurementService measurementService;
 
-    public MeasurementController(MeasurementService measurementService){
+    public MeasurementController(MeasurementService measurementService) {
         this.measurementService = measurementService;
     }
 
     @GetMapping
     @ResponseBody
-    public List<MeasurementDTO> getMeasurements() {
+    public List<MeasurementQuery> getMeasurements() {
         return measurementService.findAll();
-    }
-
-    @PostMapping
-    public void addMeasurement(@RequestBody SaveMeasurementCommand command) {
-        measurementService.saveMeasurement(command);
     }
 }

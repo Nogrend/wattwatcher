@@ -1,5 +1,7 @@
 package com.wattwatcher.measurement;
 
+import com.wattwatcher.measurement.controller.MeasurementQuery;
+import com.wattwatcher.measurement.controller.SaveMeasurementCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,40 +18,40 @@ public class MeasurementService {
         this.measurementRepository = measurementRepository;
     }
 
-    public List<MeasurementDTO> findAll() {
-        List<Measurement> measurements = measurementRepository.findAll();
+    public List<MeasurementQuery> findAll() {
+        var measurements = measurementRepository.findAll();
         return measurements.stream()
-                .map(this::convertMeasurementToMeasurementDTO)
+                .map(this::convertMeasurementToMeasurementQuery)
                 .collect(Collectors.toList());
     }
 
-    private MeasurementDTO convertMeasurementToMeasurementDTO(Measurement measurement) {
-        return MeasurementDTO.builder()
-                .id(measurement.getId())
-                .timestamp(measurement.getTimestamp())
-                .voltage(measurement.getVoltage())
-                .current(measurement.getCurrent())
-                .powerActive(measurement.getPowerActive())
-                .powerApparent(measurement.getPowerApparent())
-                .powerReactive(measurement.getPowerReactive())
-                .powerFactor(measurement.getPowerFactor())
-                .phaseAngle(measurement.getPhaseAngle())
-                .frequency(measurement.getFrequency())
-                .importEnergyActive(measurement.getImportEnergyActive())
-                .exportEnergyActive(measurement.getExportEnergyActive())
-                .importEnergyReactive(measurement.getImportEnergyReactive())
-                .exportEnergyReactive(measurement.getExportEnergyReactive())
-                .totalDemandPowerActive(measurement.getTotalDemandPowerActive())
-                .maximumTotalDemandPowerActive(measurement.getMaximumTotalDemandPowerActive())
-                .importDemandPowerActive(measurement.getImportDemandPowerActive())
-                .maximumImportDemandPowerActive(measurement.getMaximumImportDemandPowerActive())
-                .exportDemandPowerActive(measurement.getExportDemandPowerActive())
-                .maximumExportDemandPowerActive(measurement.getMaximumExportDemandPowerActive())
-                .totalDemandCurrent(measurement.getTotalDemandCurrent())
-                .maximumTotalDemandCurrent(measurement.getMaximumTotalDemandCurrent())
-                .totalEnergyActive(measurement.getTotalEnergyActive())
-                .totalEnergyReactive(measurement.getTotalEnergyReactive())
-                .build();
+    private MeasurementQuery convertMeasurementToMeasurementQuery(Measurement measurement) {
+        return new MeasurementQuery(
+                measurement.getId(),
+                measurement.getTimestamp(),
+                measurement.getVoltage(),
+                measurement.getCurrent(),
+                measurement.getPowerActive(),
+                measurement.getPowerApparent(),
+                measurement.getPowerReactive(),
+                measurement.getPowerFactor(),
+                measurement.getPhaseAngle(),
+                measurement.getFrequency(),
+                measurement.getImportEnergyActive(),
+                measurement.getExportEnergyActive(),
+                measurement.getImportEnergyReactive(),
+                measurement.getExportEnergyReactive(),
+                measurement.getTotalDemandPowerActive(),
+                measurement.getMaximumTotalDemandPowerActive(),
+                measurement.getImportDemandPowerActive(),
+                measurement.getMaximumImportDemandPowerActive(),
+                measurement.getExportDemandPowerActive(),
+                measurement.getMaximumExportDemandPowerActive(),
+                measurement.getTotalDemandCurrent(),
+                measurement.getMaximumTotalDemandCurrent(),
+                measurement.getTotalEnergyActive(),
+                measurement.getTotalEnergyReactive()
+    );
     }
 
 
