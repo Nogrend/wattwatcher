@@ -29,29 +29,9 @@ public class MeasurementService {
         return new MeasurementQuery(
                 measurement.getId(),
                 measurement.getTimestamp(),
-                measurement.getVoltage(),
-                measurement.getCurrent(),
                 measurement.getPowerActive(),
-                measurement.getPowerApparent(),
-                measurement.getPowerReactive(),
-                measurement.getPowerFactor(),
-                measurement.getPhaseAngle(),
-                measurement.getFrequency(),
-                measurement.getImportEnergyActive(),
-                measurement.getExportEnergyActive(),
-                measurement.getImportEnergyReactive(),
-                measurement.getExportEnergyReactive(),
-                measurement.getTotalDemandPowerActive(),
-                measurement.getMaximumTotalDemandPowerActive(),
-                measurement.getImportDemandPowerActive(),
-                measurement.getMaximumImportDemandPowerActive(),
-                measurement.getExportDemandPowerActive(),
-                measurement.getMaximumExportDemandPowerActive(),
-                measurement.getTotalDemandCurrent(),
-                measurement.getMaximumTotalDemandCurrent(),
-                measurement.getTotalEnergyActive(),
-                measurement.getTotalEnergyReactive()
-    );
+                measurement.getTotalEnergyActive()
+        );
     }
 
 
@@ -59,28 +39,9 @@ public class MeasurementService {
         var measurement = new Measurement(
                 command.id(),
                 command.timestamp(),
-                command.voltage(),
-                command.current(),
+                command.deviceId(),
                 command.powerActive(),
-                command.powerApparent(),
-                command.powerReactive(),
-                command.powerFactor(),
-                command.phaseAngle(),
-                command.frequency(),
-                command.importEnergyActive(),
-                command.exportEnergyActive(),
-                command.importEnergyReactive(),
-                command.exportEnergyReactive(),
-                command.totalDemandPowerActive(),
-                command.maximumTotalDemandPowerActive(),
-                command.importDemandPowerActive(),
-                command.maximumImportDemandPowerActive(),
-                command.exportDemandPowerActive(),
-                command.maximumExportDemandPowerActive(),
-                command.totalDemandCurrent(),
-                command.maximumTotalDemandCurrent(),
-                command.totalEnergyActive(),
-                command.totalEnergyReactive()
+                command.totalEnergyActive()
         );
         measurementRepository.save(measurement);
     }
