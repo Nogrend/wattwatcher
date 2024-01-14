@@ -29,8 +29,8 @@ public class MeasurementMessageHandler {
                 var saveMeasurementCommand = objectMapper.readValue((String) payload, SaveMeasurementCommand.class);
                 measurementService.saveMeasurement(saveMeasurementCommand);
             } catch (JsonProcessingException e) {
-//                throw new RuntimeException(e);
                 System.out.println("Payload format can't be handled");
+                throw new RuntimeException(e);
             }
         };
     }
